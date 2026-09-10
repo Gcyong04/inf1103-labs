@@ -20,3 +20,8 @@ while True:
 
   # Update state of inventory
   inventory += stock_quantity
+
+  # Trigger overstock alert when inventory > 500
+  if inventory > 500:
+    print("Overstock Alert: Inventory exceeds 500 units.")
+    break
