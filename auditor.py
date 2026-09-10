@@ -1,6 +1,9 @@
 # Initialize inventory
 inventory = 0
 
+#Initialize failed/rejected entries
+failed_entries = 0
+
 # Continuous loop for user input
 while True:
 
@@ -13,6 +16,8 @@ while True:
   # Handle invalid string inputs and negative numbers
   if not stock_quantity.isdigit():
     print("Error: Please enter a valid positive integer.")
+    # Update state of failed entries
+    failed_entries += 1
     continue
 
   # Convert stock quantity input from string to integer
@@ -25,3 +30,7 @@ while True:
   if inventory > 500:
     print("Overstock Alert: Inventory exceeds 500 units.")
     break
+
+# Reporting
+print("Total Units Processed: ", inventory)
+print("Number of Failed/Rejected Entries: ", failed_entries)
