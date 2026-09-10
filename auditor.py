@@ -9,3 +9,6 @@ while True:
   # Exit loop if user quits
   if stock_quantity.lower() == "quit":
     break
+
+  # Convert stock quantity input from string to integer
+  stock_quantity = int(stock_quantity)
