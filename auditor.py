@@ -17,3 +17,6 @@ while True:
 
   # Convert stock quantity input from string to integer
   stock_quantity = int(stock_quantity)
+
+  # Update state of inventory
+  inventory += stock_quantity
