@@ -14,6 +14,9 @@ def get_valid_input():
     else:
       return int(user_input)
 
+# Update total inventory function
+def process_delivery(current_total, new_value):
+  return current_total + new_value
 
 # Initialize inventory
 inventory = 0
@@ -33,8 +36,8 @@ while True:
     failed_entries += 1
     continue
 
-  # Update state of inventory
-  inventory += delivery_amount
+  # Update new total inventory
+  inventory = process_delivery(inventory, delivery_amount)
 
   # Trigger overstock alert when inventory > 500
   if inventory > 500:
