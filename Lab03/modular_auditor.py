@@ -18,6 +18,10 @@ def get_valid_input():
 def process_delivery(current_total, new_value):
   return current_total + new_value
 
+# Calculate tax amount function
+def calculate_tax(amount):
+  return amount*0.10
+
 # Initialize inventory
 inventory = 0
 
@@ -38,6 +42,10 @@ while True:
 
   # Update new total inventory
   inventory = process_delivery(inventory, delivery_amount)
+
+  # Calculate tax
+  tax = calculate_tax(delivery_amount)
+  print("Tax for this delivery: ", tax)
 
   # Trigger overstock alert when inventory > 500
   if inventory > 500:
