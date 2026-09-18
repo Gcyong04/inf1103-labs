@@ -1,30 +1,40 @@
+# Input Function
+def get_valid_input():
+  while True:
+    user_input = input("Enter stock quantity (or type 'quit' to exit): ")
+
+    # Exit loop if user quits
+    if user_input.lower() == "quit":
+      return 'quit'
+
+    # Handle invalid string inputs and negative numbers
+    if not user_input.isdigit():
+      print("Error: Please enter a valid positive integer.")
+      return None
+    else:
+      return int(user_input)
+
+
 # Initialize inventory
 inventory = 0
 
 #Initialize failed/rejected entries
 failed_entries = 0
 
-# Continuous loop for user input
+# Main Loop
 while True:
 
-  stock_quantity = input("Enter stock quantity (or type 'quit' to exit): ")
+  delivery_amount = get_valid_input()
 
-  # Exit loop if user quits
-  if stock_quantity.lower() == "quit":
+  if delivery_amount == "quit":
     break
 
-  # Handle invalid string inputs and negative numbers
-  if not stock_quantity.isdigit():
-    print("Error: Please enter a valid positive integer.")
-    # Update state of failed entries
+  if delivery_amount is None:
     failed_entries += 1
     continue
 
-  # Convert stock quantity input from string to integer
-  stock_quantity = int(stock_quantity)
-
   # Update state of inventory
-  inventory += stock_quantity
+  inventory += delivery_amount
 
   # Trigger overstock alert when inventory > 500
   if inventory > 500:
