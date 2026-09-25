@@ -31,6 +31,10 @@ def process_delivery(inventory, new_item):
   new_inventory = inventory + [new_item]
   return new_inventory
 
+# Calculate total quantity of inventory
+def calculate_inventory_total(inventory):
+  return sum(item[2] for item in inventory)
+
 # Calculate tax amount function
 def calculate_tax(amount):
   return amount * TAX_RATE
@@ -81,12 +85,12 @@ def main():
     # Update inventory state
     inventory = process_delivery(inventory, result[0])
 
-    if inventory > MAX_CAPACITY:
+    if calculate_inventory_total(inventory) > MAX_CAPACITY:
       print("Overstock Alert: Inventory has exceed 500 units")
       break
 
     # Calculate tax amount
-    tax_amount += calculate_tax(result)
+    tax_amount += calculate_tax(result[0][2])
 
   return generate_report(inventory, failed_entries)
 
