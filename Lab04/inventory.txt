@@ -1,3 +1,5 @@
 1, Mouse, 30
 2, Banana, 30
 3, Keyboard, 40
+4, Apples, 40
+5, Keys, 30
