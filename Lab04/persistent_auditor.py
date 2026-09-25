@@ -8,20 +8,28 @@ ITEM_FIELDS = {
 }
 
 # Input Function
-def get_valid_input():
+def get_valid_input(inventory_length):
+  failed_attempts = 0
   while True:
-    user_input = input("Enter stock quantity (or type 'quit' to exit): ")
+    name = input("Enter product name (type 'quit' to exit): ")
 
     # Exit loop if user quits
-    if user_input.strip().lower() == 'quit':
+    if name.strip().lower() == 'quit':
       return "quit"
 
-    # Handle invalid string inputs and negative numbers
-    if not user_input.isdigit():
-      print("Error: Please enter a valid positive integer.")
-      return
-    else:
-      return int(user_input)
+     # Inner loop just for quantity, so invalid input doesn't re-ask for name
+    while True:
+      quantity = input("Enter quantity (type 'quit' to exit): ")
+
+      if quantity.strip().lower() == 'quit':
+        return "quit"
+
+      if not quantity.isdigit():
+        print("Error: Please enter a valid positive integer.")
+        failed_attempts += 1
+        continue 
+
+      return [[inventory_length + 1, name, int(quantity)], failed_attempts]
 
 # Update total inventory function
 def process_delivery(current_total, new_value):
@@ -54,6 +62,7 @@ def load_inventory():
   return items
 
 
+
 def main():
 
   # Initialise variables
@@ -67,14 +76,12 @@ def main():
   while True:
 
     # Get & Validate User Input
-    result = get_valid_input()
+    result = get_valid_input(len(inventory))
 
     if result == 'quit':
       break
 
-    if result == None:
-      failed_entries += 1
-      continue
+    failed_entries += result[1]
 
     # Update inventory state
     inventory = process_delivery(inventory, result)
