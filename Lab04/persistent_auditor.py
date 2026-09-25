@@ -1,6 +1,11 @@
 # Global Constant
 MAX_CAPACITY = 500
 TAX_RATE = 0.1 # 10% tax rate
+ITEM_FIELDS = {
+  "id": 0,
+  "name": 1,
+  "quantity": 2,
+}
 
 # Input Function
 def get_valid_input():
@@ -34,13 +39,30 @@ def generate_report(total_units, failed_attempts):
   print("Number of Failed/Rejected Entries: ", failed_attempts)
   return
 
+# Load inventory function
+def load_inventory():
+  items = []
+  with open("inventory.txt", 'r') as f:
+    for line in f:
+      line = line.strip()
+      if not line:
+        continue
+      parts = [p.strip() for p in line.split(',')]
+      parts[ITEM_FIELDS["id"]] = int(parts[ITEM_FIELDS["id"]])
+      parts[ITEM_FIELDS["quantity"]] = int(parts[ITEM_FIELDS["quantity"]])
+      items.append(parts)
+  return items
+
 
 def main():
 
-  #Initialise variables
-  inventory = 0
+  # Initialise variables
+  inventory = []
   failed_entries = 0
   tax_amount = 0
+
+  # Read file and load items into inventory
+  inventory = load_inventory()
 
   while True:
 
