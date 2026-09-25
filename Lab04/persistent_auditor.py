@@ -60,6 +60,10 @@ def load_inventory():
       items.append(parts)
   return items
 
+def display_inventory(inventory):
+  print("Current Inventory: ")
+  for item in inventory:
+    print(", ".join(str(x) for x in item))
 
 
 def main():
@@ -71,6 +75,7 @@ def main():
 
   # Read file and load items into inventory
   inventory = load_inventory()
+  display_inventory(inventory)
 
   while True:
 

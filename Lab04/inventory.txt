@@ -1,0 +1,2 @@
+1001, Wireless Mouse, 20
+1002, Keybaord, 10
