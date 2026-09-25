@@ -1,11 +1,6 @@
 # Global Constant
 MAX_CAPACITY = 500
 TAX_RATE = 0.1 # 10% tax rate
-ITEM_FIELDS = {
-  "id": 0,
-  "name": 1,
-  "quantity": 2,
-}
 
 # Input Function
 def get_valid_input(inventory_length):
@@ -32,9 +27,9 @@ def get_valid_input(inventory_length):
       return [[inventory_length + 1, name, int(quantity)], failed_attempts]
 
 # Update total inventory function
-def process_delivery(current_total, new_value):
-  new_total = current_total + new_value
-  return new_total
+def process_delivery(inventory, new_item):
+  new_inventory = inventory + [new_item]
+  return new_inventory
 
 # Calculate tax amount function
 def calculate_tax(amount):
@@ -56,8 +51,8 @@ def load_inventory():
       if not line:
         continue
       parts = [p.strip() for p in line.split(',')]
-      parts[ITEM_FIELDS["id"]] = int(parts[ITEM_FIELDS["id"]])
-      parts[ITEM_FIELDS["quantity"]] = int(parts[ITEM_FIELDS["quantity"]])
+      parts[0] = int(parts[0])
+      parts[2] = int(parts[2])
       items.append(parts)
   return items
 
@@ -84,7 +79,7 @@ def main():
     failed_entries += result[1]
 
     # Update inventory state
-    inventory = process_delivery(inventory, result)
+    inventory = process_delivery(inventory, result[0])
 
     if inventory > MAX_CAPACITY:
       print("Overstock Alert: Inventory has exceed 500 units")
