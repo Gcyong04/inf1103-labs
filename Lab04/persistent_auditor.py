@@ -41,8 +41,8 @@ def calculate_tax(amount):
 
 # Generate Report function
 def generate_report(total_units, failed_attempts):
-  print("------------------------\nSummary Report\n------------------------")
-  print("Total Units Processed: ", total_units)
+  print("--------------------------------------------\nSummary Report\n--------------------------------------------")
+  print("Total Units: ", total_units)
   print("Number of Failed/Rejected Entries: ", failed_attempts)
   return
 
@@ -64,6 +64,13 @@ def display_inventory(inventory):
   print("Current Inventory: ")
   for item in inventory:
     print(", ".join(str(x) for x in item))
+
+def save_inventory(inventory):
+  with open("inventory.txt", "w") as file:
+    for item in inventory:
+      file.write(f"{item[0]}, {item[1]}, {item[2]}\n")
+
+  print("\nInventory successfully saved to inventory.txt")
 
 
 def main():
@@ -97,7 +104,9 @@ def main():
     # Calculate tax amount
     tax_amount += calculate_tax(result[0][2])
 
-  return generate_report(inventory, failed_entries)
+  save_inventory(inventory)
+
+  return generate_report(calculate_inventory_total(inventory), failed_entries)
 
 # Program Entry Point
 if __name__ == "__main__":
