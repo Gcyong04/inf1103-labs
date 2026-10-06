@@ -135,6 +135,10 @@ def main():
   # Initialise variables
   inventory = []
 
+  print("\n===============================================================")
+  print("INVENTORY MANAGEMENT SYSTEMS")
+  print("===============================================================")
+
   inventory = load_inventory()
 
   while True:
@@ -188,7 +192,9 @@ def main():
     elif selected_action == 6:
       print("\nSaving inventory before exit...")
       save_inventory(inventory)
-      print("\nInventory saved successfully")
+      print("Inventory saved successfully")
+      print("\nThank you for using Inventory Management System")
+      print("Program terminated")
       break
 
 if __name__ == "__main__":
