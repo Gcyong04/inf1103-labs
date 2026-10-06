@@ -92,6 +92,16 @@ def add_product(inventory, new_product):
   return True
 
 
+# Update stock of existing product in inventory list
+def update_stock(inventory, product_id, new_stock):
+  product = search_product(inventory, product_id)
+  if product is None:
+    print("\nProduct not found, please select action and enter valid ID")
+    return False
+  product['stock'] = new_stock
+  return True
+
+
 # Save inventory list into json file
 def save_inventory(inventory):
   with open(INVENTORY_FILE, "w") as file:
@@ -142,6 +152,16 @@ def main():
         print("\nProduct added successfully")
       else:
         print("\nFailed to add product, please select action and try again")
+
+    # Update stock 
+    elif selected_action == 3:
+      product_id = input("Enter product ID: ").strip()
+      new_stock = get_valid_stock_quantity("Enter new stock quantity")
+      update_status = update_stock(inventory, product_id, new_stock)
+      if update_status:
+        print("\nProduct stock updated successfully")
+      else:
+        print("Failed to update product stock, please select action and try again")
 
     # Search product
     elif selected_action == 4:
