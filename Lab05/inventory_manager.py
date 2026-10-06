@@ -18,6 +18,19 @@ def load_inventory():
     print("JSON file does not exists")
     return []
 
+
+# Display all items in current inventory
+def display_all(inventory):
+  print("\nCurrent Inventory")
+  print("------------------------------------------------------------------------")
+  if not inventory:
+    print("No products in inventory")
+  else:
+    for item in inventory:
+      print(f"ID: {item['id']} | Name: {item['name']} | Price: {item['price']} | Stock: {item['stock']}")
+  print("------------------------------------------------------------------------")
+  
+
 # Display select menu options and get valid user input
 def get_valid_menu_option():
   while True:
@@ -45,7 +58,13 @@ def main():
 
   inventory = load_inventory()
 
-  selected_action = get_valid_menu_option()
+  while True:
+    selected_action = get_valid_menu_option()
+
+    if selected_action == 1:
+      display_all(inventory)
+    elif selected_action == 6:
+      break
 
 if __name__ == "__main__":
   main()
