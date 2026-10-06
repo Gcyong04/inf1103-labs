@@ -66,7 +66,6 @@ def get_valid_price():
       print("Invalid price, please enter a valid number")
 
 
-
 # Input and validation for new product to be added
 def get_valid_new_product():
   print("\nAdd new product")
@@ -82,6 +81,7 @@ def get_valid_new_product():
     "stock": product_stock
   }
 
+
 # Add new product to inventory list
 def add_product(inventory, new_product):
   existing_product = search_product(inventory, new_product['id'])
@@ -90,6 +90,12 @@ def add_product(inventory, new_product):
     return False
   inventory.append(new_product)
   return True
+
+
+# Save inventory list into json file
+def save_inventory(inventory):
+  with open(INVENTORY_FILE, "w") as file:
+    json.dump(inventory, file, indent=4)
 
 
 # Display select menu options and get valid user input
@@ -113,6 +119,8 @@ def get_valid_menu_option():
     except ValueError:
       print("\nInvalid option, please select a valid option from menu")
 
+
+# Program Entry Point
 def main():
   # Initialise variables
   inventory = []
@@ -122,9 +130,11 @@ def main():
   while True:
     selected_action = get_valid_menu_option()
 
+    # Display all inventory
     if selected_action == 1:
       display_all(inventory)
 
+    # Add product
     elif selected_action == 2:
       new_product = get_valid_new_product()
       add_status = add_product(inventory, new_product)
@@ -133,6 +143,7 @@ def main():
       else:
         print("\nFailed to add product, please select action and try again")
 
+    # Search product
     elif selected_action == 4:
       product_id = input("Enter product ID: ").strip()
       product = search_product(inventory, product_id)
@@ -147,7 +158,17 @@ def main():
       print(f"Stock: {product['stock']}")
       print("--------------------------------------------------------------------------------")
 
+    # Save inventory
+    elif selected_action == 5:
+      print("\nSaving inventory...")
+      save_inventory(inventory)
+      print("Inventory saved successfully")
+
+    # Save and exit
     elif selected_action == 6:
+      print("\nSaving inventory before exit...")
+      save_inventory(inventory)
+      print("\nInventory saved successfully")
       break
 
 if __name__ == "__main__":
