@@ -40,6 +40,58 @@ def search_product(inventory, product_id):
   return None
 
 
+# Validate stock quantity input is an int
+def get_valid_stock_quantity(prompt):
+  while True:
+    try:
+      stock_quantity = int(input(f"{prompt}: ").strip())
+      if stock_quantity < 0:
+        print("Invalid stock quantity, cannot be negative")
+        continue
+      return stock_quantity
+    except ValueError:
+      print("Invalid stock quantity, please enter a valid integer")
+
+
+# Validate price input is correct format
+def get_valid_price():
+  while True:
+    try:
+      price = float(input(f"Price: ").strip())
+      if price < 0:
+        print("Invalid price, cannot be negative")
+        continue
+      return round(price, 2)
+    except ValueError:
+      print("Invalid price, please enter a valid number")
+
+
+
+# Input and validation for new product to be added
+def get_valid_new_product():
+  print("\nAdd new product")
+  product_id = input("Product ID: ").strip().upper()
+  product_name = input("Product Name: ").strip()
+  product_price = get_valid_price()
+  product_stock = get_valid_stock_quantity("Stock Quantity")
+
+  return {
+    "id": product_id,
+    "name": product_name,
+    "price": product_price,
+    "stock": product_stock
+  }
+
+# Add new product to inventory list
+def add_product(inventory, new_product):
+  existing_product = search_product(inventory, new_product['id'])
+  if existing_product:
+    print("\nProduct with ID already exists in database")
+    return False
+  inventory.append(new_product)
+  return True
+
+
 # Display select menu options and get valid user input
 def get_valid_menu_option():
   while True:
@@ -72,6 +124,14 @@ def main():
 
     if selected_action == 1:
       display_all(inventory)
+
+    elif selected_action == 2:
+      new_product = get_valid_new_product()
+      add_status = add_product(inventory, new_product)
+      if add_status:
+        print("\nProduct added successfully")
+      else:
+        print("\nFailed to add product, please select action and try again")
 
     elif selected_action == 4:
       product_id = input("Enter product ID: ").strip()
