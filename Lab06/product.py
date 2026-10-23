@@ -11,6 +11,10 @@ class Product:
 
 
   # ---- Methods ----
+  def get_product_id(self) -> str:
+    return self.__product_id
+
+
   def update_stock(self, quantity: int) -> None:
     """Set stock of current product
 
@@ -35,11 +39,5 @@ class Product:
 
 
   def display_information(self) -> None:
-    print(f"\n{'-' * 50}")
-    print("Product Found!")
-    print(f"\nID: {self.__product_id}")
-    print(f"Name: {self.__name}")
-    print(f"Price: {self.__price}")
-    print(f"Stock: {self.__stock}")
-    print(f"{'-' * 50}")
+    print(f"ID: {self.__product_id} | Name: {self.__name} | Price: ${self.__price} | Stock: {self.__stock}")
 
