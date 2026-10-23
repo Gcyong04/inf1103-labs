@@ -34,6 +34,12 @@ class Product:
     self.__stock = quantity
 
 
-  def display_information() -> None:
-    pass
+  def display_information(self) -> None:
+    print(f"\n{'-' * 50}")
+    print("Product Found!")
+    print(f"\nID: {self.__product_id}")
+    print(f"Name: {self.__name}")
+    print(f"Price: {self.__price}")
+    print(f"Stock: {self.__stock}")
+    print(f"{'-' * 50}")
 
