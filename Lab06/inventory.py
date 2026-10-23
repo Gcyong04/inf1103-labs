@@ -9,7 +9,27 @@ class Inventory:
 
   # ---- Methods ----
   def add_product(self, product: Product) -> None:
-    pass
+    """Append new product to inventory list
+
+    Args:
+      product: The new product to be added, an object that conforms to Product class
+
+    Function:
+      Validates the product object conforms to Product class and check
+      that the product ID does not exist in the inventory list
+      Append new product into inventory list if validations passed
+
+    Return:
+      None
+    """
+
+    if not isinstance(product, Product):
+      raise TypeError("Input does not conform to Product class")
+
+    if self.search_product(product_id=product.get_product_id()) is not None:
+      raise ValueError(f"Product with ID ({product.get_product_id()}) already exists")
+
+    self.__products.append(product)
 
 
   def search_product(self, product_id: str) -> Product | None:
