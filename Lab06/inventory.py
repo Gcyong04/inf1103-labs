@@ -24,10 +24,10 @@ class Inventory:
     """
 
     if not isinstance(product, Product):
-      raise TypeError("Input does not conform to Product class")
+      raise TypeError("Input does not conform to Product class!")
 
     if self.search_product(product_id=product.get_product_id()) is not None:
-      raise ValueError(f"Product with ID ({product.get_product_id()}) already exists")
+      raise ValueError(f"Product with ID ({product.get_product_id()}) already exists!")
 
     self.__products.append(product)
 
@@ -54,4 +54,11 @@ class Inventory:
 
 
   def display_all(self) -> list:
-    pass
+    print(f"\n{'-' * 60}")
+    print("Current Inventory")
+    if not self.__products:
+      print("\nNo products in inventory.")
+    else:
+      for product in self.__products:
+        product.display_information()
+    print("-" * 60)

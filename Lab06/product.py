@@ -30,10 +30,10 @@ class Product:
     """
 
     if not isinstance(quantity, int):
-      raise ValueError("\nStock must be a valid integer.")
+      raise ValueError("Stock must be a valid integer!")
 
     if quantity < 0:
-      raise ValueError("\nStock cannot be negative value.")
+      raise ValueError("Stock cannot be negative value!")
 
     self.__stock = quantity
 
