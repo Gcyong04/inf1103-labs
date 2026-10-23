@@ -1,5 +1,4 @@
 import json
-import os
 
 from product import Product
 from inventory import Inventory
@@ -19,6 +18,7 @@ def load_inventory(inventory: Inventory) -> None:
 
 
 def save_inventory(inventory: Inventory) -> None:
+  print("\nSaving inventory to file...")
   with open(INVENTORY_FILE, "w") as file:
     json.dump([p.to_dict() for p in inventory.get_products()], file, indent=4)
   print("\nInventory saved successfully.")
@@ -52,6 +52,43 @@ def prompt_float(prompt: str) -> float:
       print("\nPlease enter a valid number!")
 
 
+# ---- Menu Action Functions ----
+def menu_add_product(inventory: Inventory) -> None:
+  print("\nAdd a new product\n")
+  product_id = input("Product ID: ").strip()
+  name = input("Name: ").strip()
+  price = prompt_float("Price: ")
+  stock = prompt_int("Stock: ")
+
+  try:
+    inventory.add_product(Product(product_id=product_id, name=name, price=price, stock=stock))
+    print("\nProduct added sucessfully.")
+  except ValueError as err:
+    print(f"\nFailed to add product: {err}")
+
+
+def menu_update_stock(inventory: Inventory) -> None:
+  product = inventory.search_product(input("Product ID: ").strip())
+  if product is None:
+    print("\nProduct not found.")
+    return
+  new_stock = prompt_int("New stock quantity: ")
+  try:
+    product.update_stock(new_stock)
+    print(f"\nStock quantity updated successfully for {product.get_product_id()}")
+  except ValueError as err:
+    print(f"\nFailed to update stock quantity: {err}")
+
+
+def menu_search_product(inventory: Inventory):
+  product = inventory.search_product(input("Product ID: ").strip())
+  if product is None:
+    print("\nProduct not found.")
+  else:
+    print(f"\n{'-' * 60}")
+    print("Product Found\n")
+    product.display_information()
+    print(f"{'-' * 60}")
 
 def main():
 
@@ -64,16 +101,19 @@ def main():
     choice = input("Select an option (1-6): ").strip()
     match choice:
       case "1":
-        break
+        inventory.display_all()
       case "2":
-        break
+        menu_add_product(inventory=inventory)
       case "3":
-        break
+        menu_update_stock(inventory=inventory)
       case "4":
-        break
+        menu_search_product(inventory=inventory)
       case "5":
-        break
+        save_inventory(inventory=inventory)
       case "6":
+        save_inventory(inventory=inventory)
+        print("\nThank you for using Inventory Management System!")
+        print("Program terminated.")
         break
       case _:
         print("\nPlease select a valid option!")

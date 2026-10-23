@@ -4,10 +4,8 @@ class Product:
   def __init__(self, product_id: str, name: str, price: float, stock: int ):
     self.__product_id = product_id
     self.__name = name
-    self.__price = price,
-    self.__stock = 0,
-    # Validate the initial stock
-    self.__stock = self.update_stock(stock) 
+    self.__price = price
+    self.__stock = stock
 
 
   # ---- Methods ----
