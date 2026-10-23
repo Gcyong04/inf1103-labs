@@ -8,6 +8,10 @@ class Inventory:
 
 
   # ---- Methods ----
+  def get_products(self) -> list[Product]:
+    return list(self.__products)
+
+
   def add_product(self, product: Product) -> None:
     """Append new product to inventory list
 
@@ -55,9 +59,9 @@ class Inventory:
 
   def display_all(self) -> list:
     print(f"\n{'-' * 60}")
-    print("Current Inventory")
+    print("Current Inventory\n")
     if not self.__products:
-      print("\nNo products in inventory.")
+      print("No products in inventory.")
     else:
       for product in self.__products:
         product.display_information()
