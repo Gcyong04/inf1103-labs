@@ -15,6 +15,15 @@ class Product:
     return self.__product_id
 
 
+  def to_dict(self) -> dict:
+    return {
+      "product_id": self.__product_id,
+      "name": self.__name,
+      "price": self.__price,
+      "stock": self.__stock,
+    }
+
+
   def update_stock(self, quantity: int) -> None:
     """Set stock of current product
 
