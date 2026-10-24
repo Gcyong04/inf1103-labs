@@ -10,5 +10,11 @@
         "name": "Keyboard",
         "price": 205.99,
         "stock": 20
+    },
+    {
+        "product_id": "P003",
+        "name": "Apple",
+        "price": 1.35,
+        "stock": 40
     }
 ]
