@@ -1,9 +1,11 @@
 from abc import ABC, abstractmethod
+from config import PRODUCT_TYPES
 
 class Product(ABC):
 
   # ---- Constructor ----
-  def __init__(self, product_id: str, name: str, price: float, stock: int ):
+  def __init__(self, type: str ,product_id: str, name: str, price: float, stock: int ):
+    self.__type = type
     self.__product_id = product_id
     self.__name = name
     self.__price = price
@@ -17,12 +19,12 @@ class Product(ABC):
 
   def to_dict(self) -> dict:
     return {
+      "type": self.__type,
       "product_id": self.__product_id,
       "name": self.__name,
       "price": self.__price,
       "stock": self.__stock,
     }
-
 
   def update_stock(self, quantity: int) -> None:
     """Set stock of current product

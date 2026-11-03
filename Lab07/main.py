@@ -1,7 +1,10 @@
 import json
 
 from product import Product
+from physical_product import PhysicalProduct
+from digital_product import DigitalProduct
 from inventory import Inventory
+from config import PRODUCT_TYPES
 
 INVENTORY_FILE = "inventory.json"
 
@@ -11,7 +14,10 @@ def load_inventory(inventory: Inventory) -> None:
     with open(INVENTORY_FILE, "r") as file:
       data = json.load(file)
     for item in data:
-      inventory.add_product(Product(item["product_id"], item["name"], item["price"], item["stock"]))
+      if item["type"] == PRODUCT_TYPES["physical"]:
+        inventory.add_product(PhysicalProduct(product_id=item["product_id"], name=item["name"], price=item["price"], stock=item["stock"], weight=item["weight"]))
+      elif item["type"] == PRODUCT_TYPES["digital"]:
+        inventory.add_product(DigitalProduct(product_id=item["product_id"], name=item["name"], price=item["price"], stock=item["stock"], download_size=item["download_size"]))
     print(f"\nLoaded {len(data)} product(s) from {INVENTORY_FILE} to inventory.")
   except (FileNotFoundError, KeyError, ValueError, TypeError) as err:
     print(f"\nCould not load file: {err}")
@@ -54,14 +60,32 @@ def prompt_float(prompt: str) -> float:
 
 # ---- Menu Action Functions ----
 def menu_add_product(inventory: Inventory) -> None:
+  weight = 0
+  download_size = 0
+
   print("\nAdd a new product\n")
+  print("1. Physical product")
+  print("2. Digital product")
+  choice = input("\nSelect product type: ").strip()
+
+  if choice != "1" and choice != "2":
+    print("\nInvalid Choice!")
+    return
+
   product_id = input("Product ID: ").strip()
   name = input("Name: ").strip()
   price = prompt_float("Price: ")
   stock = prompt_int("Stock: ")
-
+  if choice == "1":
+    weight = prompt_float("Weight: ")
+  elif choice == "2":
+    download_size = prompt_float("Download Size: ")
+  
   try:
-    inventory.add_product(Product(product_id=product_id, name=name, price=price, stock=stock))
+    if choice == "1":
+      inventory.add_product(PhysicalProduct(product_id=product_id, name=name, price=price, stock=stock, weight=weight))
+    elif choice == "2":
+      inventory.add_product(DigitalProduct(product_id=product_id, name=name, price=price, stock=stock, download_size=download_size))
     print("\nProduct added sucessfully.")
   except ValueError as err:
     print(f"\nFailed to add product: {err}")

@@ -1,20 +1,18 @@
 [
     {
+        "type": "physical",
         "product_id": "P001",
         "name": "Banana",
-        "price": 2.05,
-        "stock": 20
+        "price": 1.05,
+        "stock": 4000,
+        "weight": 0.35
     },
     {
+        "type": "digital",
         "product_id": "P002",
-        "name": "Keyboard",
-        "price": 205.99,
-        "stock": 20
-    },
-    {
-        "product_id": "P003",
-        "name": "Apple",
-        "price": 1.35,
-        "stock": 40
+        "name": "Antivirus software",
+        "price": 56.98,
+        "stock": 375,
+        "download_size": 500.83
     }
 ]
