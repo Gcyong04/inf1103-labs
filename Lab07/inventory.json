@@ -14,5 +14,13 @@
         "price": 56.98,
         "stock": 375,
         "download_size": 500.83
+    },
+    {
+        "type": "physical",
+        "product_id": "P003",
+        "name": "Apples",
+        "price": 2.19,
+        "stock": 3000,
+        "weight": 0.51
     }
 ]

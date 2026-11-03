@@ -1,33 +1,7 @@
-import json
-
-from product import Product
 from physical_product import PhysicalProduct
 from digital_product import DigitalProduct
 from inventory import Inventory
-from config import PRODUCT_TYPES
-
-INVENTORY_FILE = "inventory.json"
-
-# ---- File Handling ----
-def load_inventory(inventory: Inventory) -> None:
-  try:
-    with open(INVENTORY_FILE, "r") as file:
-      data = json.load(file)
-    for item in data:
-      if item["type"] == PRODUCT_TYPES["physical"]:
-        inventory.add_product(PhysicalProduct(product_id=item["product_id"], name=item["name"], price=item["price"], stock=item["stock"], weight=item["weight"]))
-      elif item["type"] == PRODUCT_TYPES["digital"]:
-        inventory.add_product(DigitalProduct(product_id=item["product_id"], name=item["name"], price=item["price"], stock=item["stock"], download_size=item["download_size"]))
-    print(f"\nLoaded {len(data)} product(s) from {INVENTORY_FILE} to inventory.")
-  except (FileNotFoundError, KeyError, ValueError, TypeError) as err:
-    print(f"\nCould not load file: {err}")
-
-
-def save_inventory(inventory: Inventory) -> None:
-  print("\nSaving inventory to file...")
-  with open(INVENTORY_FILE, "w") as file:
-    json.dump([p.to_dict() for p in inventory.get_products()], file, indent=4)
-  print("\nInventory saved successfully.")
+from file_handling import FileHandling
 
 
 # ---- Prompt/Display Functions ----
@@ -118,7 +92,8 @@ def main():
 
   # Create new inventory class instance and load inventory from file into instance
   inventory = Inventory()
-  load_inventory(inventory)
+  file_handler = FileHandling(inventory=inventory)
+  file_handler.load()
 
   while True:
     display_menu()
@@ -133,9 +108,9 @@ def main():
       case "4":
         menu_search_product(inventory=inventory)
       case "5":
-        save_inventory(inventory=inventory)
+        file_handler.save()
       case "6":
-        save_inventory(inventory=inventory)
+        file_handler.save()
         print("\nThank you for using Inventory Management System!")
         print("Program terminated.")
         break

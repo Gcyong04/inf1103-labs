@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from config import PRODUCT_TYPES
 
 class Product(ABC):
 
