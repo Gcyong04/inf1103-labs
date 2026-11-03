@@ -46,5 +46,5 @@ class Product:
 
 
   def display_information(self) -> None:
-    print(f"ID: {self.__product_id} | Name: {self.__name} | Price: ${self.__price} | Stock: {self.__stock}")
+    print(f"ID: {self.__product_id} | Name: {self.__name} | Price: ${self.__price} | Stock: {self.__stock}", end="")
 
