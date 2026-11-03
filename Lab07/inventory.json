@@ -1,0 +1,20 @@
+[
+    {
+        "product_id": "P001",
+        "name": "Banana",
+        "price": 2.05,
+        "stock": 20
+    },
+    {
+        "product_id": "P002",
+        "name": "Keyboard",
+        "price": 205.99,
+        "stock": 20
+    },
+    {
+        "product_id": "P003",
+        "name": "Apple",
+        "price": 1.35,
+        "stock": 40
+    }
+]
