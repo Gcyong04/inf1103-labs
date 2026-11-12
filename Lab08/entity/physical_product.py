@@ -1,12 +1,13 @@
 from .product import Product
+from .supplier import Supplier
 from interface import CanBeShipped
 from config import PRODUCT_TYPES
 
 class PhysicalProduct(Product, CanBeShipped):
 
   # ---- Constructor ----
-  def __init__(self, product_id: str, name: str, price: float, stock: int, weight: float, type: str = PRODUCT_TYPES["physical"]):
-    super().__init__(type, product_id, name, price, stock)
+  def __init__(self, product_id: str, name: str, price: float, stock: int, weight: float, supplier: Supplier, type: str = PRODUCT_TYPES["physical"]):
+    super().__init__(type, product_id, name, price, stock, supplier)
     self.__weight = weight
 
 

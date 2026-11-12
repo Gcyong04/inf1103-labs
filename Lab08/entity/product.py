@@ -1,21 +1,42 @@
 from abc import ABC, abstractmethod
+from .supplier import Supplier
 
 class Product(ABC):
 
   # ---- Constructor ----
-  def __init__(self, type: str ,product_id: str, name: str, price: float, stock: int ):
+  def __init__(self, type: str ,product_id: str, name: str, price: float, stock: int, supplier: Supplier):
     self.__type = type
     self.__product_id = product_id
     self.__name = name
     self.__price = price
     self.__stock = stock
+    self.__supplier = supplier
 
 
   # ---- Methods ----
   @property
+  def type(self) -> str:
+    return self.__type
+  
+  @property
   def product_id(self) -> str:
     return self.__product_id
 
+  @property
+  def name(self) -> str:
+    return self.__name
+
+  @property
+  def price(self) -> float:
+    return self.__price
+
+  @property
+  def stock(self) -> int:
+    return self.__stock
+
+  @property
+  def supplier(self) -> Supplier:
+    return self.__supplier
 
   def to_dict(self) -> dict:
     return {

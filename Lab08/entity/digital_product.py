@@ -1,11 +1,12 @@
 from .product import Product
+from .supplier import Supplier
 from config import PRODUCT_TYPES
 
 class DigitalProduct(Product):
 
   # ---- Constructor ----
-  def __init__(self, product_id: str, name: str, price: float, stock: int, download_size: float, type: str = PRODUCT_TYPES["digital"]):
-    super().__init__(type, product_id, name, price, stock)
+  def __init__(self, product_id: str, name: str, price: float, stock: int, download_size: float, supplier: Supplier, type: str = PRODUCT_TYPES["digital"]):
+    super().__init__(type, product_id, name, price, stock, supplier)
     self.__download_size = download_size
 
 
