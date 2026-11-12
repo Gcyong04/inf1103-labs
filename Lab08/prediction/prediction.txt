@@ -1,13 +1,23 @@
 2.2) 
 Prediction:
-If supplier variable is deleted after creating the product, the created Product object can still display the supplier's information.
+If supplier variable is deleted after creating the product, the created Product object can still display the supplier's information 
+as deleting the supplier only removes that variable name supplier from the scope, the object is still kept alive as the Product still holds
+reference to it
 
 Actual:
 The prediction matches the actual test results
 
 3.2)
 Prediction:
-The product still works even after removing from Inventory A
+The product still works even after removing from Inventory A. The inventory only holds a reference to that object, thus removing it only removes the
+reference from the inventory but the Product object itself is left untouched
 
 Actual:
 The prediction matches the actual test results
+
+4.3)
+Prediction:
+Adding same Product object to 2 different Orders will create 2 OrderLine objects and only 1 Product object. Each add_order_line() call creates a new
+OrderLine inside the Order object, and both of it reference to the same Product object
+
+Actual:
