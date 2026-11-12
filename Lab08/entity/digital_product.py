@@ -22,5 +22,5 @@ class DigitalProduct(Product):
     return data
 
 
-  def get_fufilment_info(self) -> str:
+  def get_fulfilment_info(self) -> str:
     return "This product is delivered digitally"

@@ -22,3 +22,14 @@ OrderLine inside the Order object, and both of it reference to the same Product 
 
 Actual:
 The prediction amtches the actual results
+
+6.3)
+Review:
+Product establishes that update_stock(quantity) accepts an integer and adjusts stock_quantity accordingly. 
+Both PhysicalProduct and DigitalProduct inherits it unchanged 
+Neither subclass rejects inputs the parent accepts, and neither changes what the method means, so Inventory code that calls update_stock() works the same on both.
+
+Diagnose:
+Yes, this violates LSP. 
+Product.update_stock() accepts a valid integer and updates stock, but the teammate’s DigitalProduct raises NotImplementedError for the same valid input, 
+so code written for Product crashes when it meets a digital product. Change subclass by removing the override so it keeps the inherited behaviour 

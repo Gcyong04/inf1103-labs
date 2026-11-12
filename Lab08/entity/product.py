@@ -75,6 +75,6 @@ class Product(ABC):
 
 
   @abstractmethod
-  def get_fufilment_info(self) -> str:
+  def get_fulfilment_info(self) -> str:
     pass
 
