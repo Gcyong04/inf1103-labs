@@ -6,8 +6,8 @@ import json
 class FileHandling:
 
   def __init__(self, inventory: Inventory, filename: str = INVENTORY_FILE):
-    self.__inventory = inventory
-    self.__filename = filename
+    self.__inventory: Inventory = inventory
+    self.__filename: str = filename
 
 
   def load(self) -> None:

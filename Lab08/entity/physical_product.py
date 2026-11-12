@@ -12,12 +12,12 @@ class PhysicalProduct(Product, CanBeShipped):
 
 
   # ---- Methods ----
-  def display_information(self) -> str:
+  def display_information(self) -> None:
     super().display_information()
     print(f" | Weight: {self.__weight} kg")
 
 
-  def to_dict(self):
+  def to_dict(self) -> dict:
     data = super().to_dict()
     data["weight"] = self.__weight
     return data

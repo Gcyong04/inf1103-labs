@@ -4,7 +4,7 @@ from file_handling import FileHandling
 
 
 # ---- Prompt/Display Functions ----
-def display_menu():
+def display_menu() -> None:
   print(f"\n{'-' * 10} MENU {'-' * 10}")
   print("1. Display all products")
   print("2. Add product")
@@ -33,8 +33,8 @@ def prompt_float(prompt: str) -> float:
 
 # ---- Menu Action Functions ----
 def menu_add_product(inventory: Inventory) -> None:
-  weight = 0
-  download_size = 0
+  weight: float = 0
+  download_size: float = 0
 
   print("\nAdd a new product\n")
   print("1. Physical product")
@@ -77,7 +77,7 @@ def menu_update_stock(inventory: Inventory) -> None:
     print(f"\nFailed to update stock quantity: {err}")
 
 
-def menu_search_product(inventory: Inventory):
+def menu_search_product(inventory: Inventory) -> None:
   product = inventory.search_product(input("Product ID: ").strip())
   if product is None:
     print("\nProduct not found.")

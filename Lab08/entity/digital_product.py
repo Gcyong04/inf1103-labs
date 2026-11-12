@@ -11,12 +11,12 @@ class DigitalProduct(Product):
 
 
   # ---- Methods ----
-  def display_information(self) -> str:
+  def display_information(self) -> None:
     super().display_information()
     print(f" | Download Size: {self.__download_size} MB")
 
 
-  def to_dict(self):
+  def to_dict(self) -> dict:
     data = super().to_dict()
     data["download_size"] = self.__download_size
     return data

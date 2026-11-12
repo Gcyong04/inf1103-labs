@@ -6,7 +6,6 @@ class Inventory:
   def __init__(self):
     self.__products: list[Product] = []
 
-
   # ---- Methods ----
   @property
   def products(self) -> list[Product]:
@@ -75,7 +74,7 @@ class Inventory:
 
     return None
 
-  def display_all(self) -> list:
+  def display_all(self) -> None:
     print(f"\n{'-' * 60}")
     print("Current Inventory\n")
     if not self.__products:

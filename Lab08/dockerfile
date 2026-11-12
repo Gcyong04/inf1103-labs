@@ -4,4 +4,4 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-CMD ["python", "prediction_test.py"]
+CMD ["python", "main.py"]
