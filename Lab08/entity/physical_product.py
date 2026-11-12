@@ -6,9 +6,9 @@ from config import PRODUCT_TYPES
 class PhysicalProduct(Product, CanBeShipped):
 
   # ---- Constructor ----
-  def __init__(self, product_id: str, name: str, price: float, stock: int, weight: float, supplier: Supplier, type: str = PRODUCT_TYPES["physical"]):
-    super().__init__(type, product_id, name, price, stock, supplier)
-    self.__weight = weight
+  def __init__(self, product_id: str, name: str, price: float, stock: int, supplier: Supplier, weight: float, type: str = PRODUCT_TYPES["physical"]):
+    super().__init__(type=type, product_id=product_id, name=name, price=price, stock=stock, supplier=supplier)
+    self.__weight: float = weight
 
 
   # ---- Methods ----

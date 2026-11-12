@@ -1,0 +1,6 @@
+1) 
+Prediction:
+If supplier variable is deleted after creating the product, the created Product object can still display the supplier's information.
+
+Actual:
+The prediction matches the actual test results

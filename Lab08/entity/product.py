@@ -4,13 +4,13 @@ from .supplier import Supplier
 class Product(ABC):
 
   # ---- Constructor ----
-  def __init__(self, type: str ,product_id: str, name: str, price: float, stock: int, supplier: Supplier):
-    self.__type = type
-    self.__product_id = product_id
-    self.__name = name
-    self.__price = price
-    self.__stock = stock
-    self.__supplier = supplier
+  def __init__(self, product_id: str, name: str, price: float, stock: int, supplier: Supplier, type: str):
+    self.__type: str = type
+    self.__product_id: str = product_id
+    self.__name: str = name
+    self.__price: float = price
+    self.__stock: int = stock
+    self.__supplier: Supplier = supplier
 
 
   # ---- Methods ----

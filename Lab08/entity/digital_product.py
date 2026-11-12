@@ -5,9 +5,9 @@ from config import PRODUCT_TYPES
 class DigitalProduct(Product):
 
   # ---- Constructor ----
-  def __init__(self, product_id: str, name: str, price: float, stock: int, download_size: float, supplier: Supplier, type: str = PRODUCT_TYPES["digital"]):
-    super().__init__(type, product_id, name, price, stock, supplier)
-    self.__download_size = download_size
+  def __init__(self, product_id: str, name: str, price: float, stock: int, supplier: Supplier, download_size: float, type: str = PRODUCT_TYPES["digital"]):
+    super().__init__(type=type, product_id=product_id, name=name, price=price, stock=stock, supplier=supplier)
+    self.__download_size: float = download_size
 
 
   # ---- Methods ----
