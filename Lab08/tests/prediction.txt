@@ -33,3 +33,18 @@ Diagnose:
 Yes, this violates LSP. 
 Product.update_stock() accepts a valid integer and updates stock, but the teammate’s DigitalProduct raises NotImplementedError for the same valid input, 
 so code written for Product crashes when it meets a digital product. Change subclass by removing the override so it keeps the inherited behaviour 
+
+7.2)
+Prediction:
+Product: Physical Product / Output (display_information + get_fulfilment_info()): Product info + This product requires physical shipping
+Product: Digital Product / Output (display_information + get_fulfilment_info()): Product info + This product is delivered digitally
+
+Actual:
+ID: P001 | Name: Laptop | Price: $1500.0 | Stock: 10 | Weight: 2.1 kg
+This product requires physical shipping.
+
+ID: D001 | Name: Python eBook | Price: $25.0 | Stock: 999 | Download Size: 5.4 MB
+This product is delivered digitally
+
+ID: P002 | Name: Phone | Price: $900.0 | Stock: 20 | Weight: 0.2 kg
+This product requires physical shipping.
