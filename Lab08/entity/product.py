@@ -45,6 +45,11 @@ class Product(ABC):
       "name": self.__name,
       "price": self.__price,
       "stock": self.__stock,
+      "supplier": {
+        "supplier_id": self.__supplier.supplier_id,
+        "name": self.__supplier.name,
+        "contact_email": self.__supplier.contact_email,
+      },
     }
 
   def update_stock(self, quantity: int) -> None:
