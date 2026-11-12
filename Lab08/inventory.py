@@ -1,4 +1,4 @@
-from product import Product
+from entity.product import Product
 
 class Inventory:
 
@@ -8,7 +8,8 @@ class Inventory:
 
 
   # ---- Methods ----
-  def get_products(self) -> list[Product]:
+  @property
+  def products(self) -> list[Product]:
     return list(self.__products)
 
 

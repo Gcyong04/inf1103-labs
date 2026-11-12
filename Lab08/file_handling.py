@@ -1,6 +1,5 @@
 from inventory import Inventory
-from physical_product import PhysicalProduct
-from digital_product import DigitalProduct
+from entity import DigitalProduct, PhysicalProduct
 from config import INVENTORY_FILE, PRODUCT_TYPES
 import json
 
@@ -27,5 +26,5 @@ class FileHandling:
   def save(self) -> None:
     print("\nSaving inventory to file...")
     with open(self.__filename, "w") as file:
-      json.dump([p.to_dict() for p in self.__inventory.get_products()], file, indent=4)
+      json.dump([p.to_dict() for p in self.__inventory.products], file, indent=4)
     print("\nInventory saved successfully.")

@@ -1,5 +1,4 @@
-from physical_product import PhysicalProduct
-from digital_product import DigitalProduct
+from entity import DigitalProduct, PhysicalProduct
 from inventory import Inventory
 from file_handling import FileHandling
 

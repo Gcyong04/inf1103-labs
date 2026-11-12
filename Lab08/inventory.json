@@ -28,7 +28,15 @@
         "product_id": "P004",
         "name": "SFT",
         "price": 123.0,
-        "stock": 123,
+        "stock": 100,
         "download_size": 123.0
+    },
+    {
+        "type": "physical",
+        "product_id": "P005",
+        "name": "test",
+        "price": 12.34,
+        "stock": 123,
+        "weight": 12.35
     }
 ]

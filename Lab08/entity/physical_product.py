@@ -1,5 +1,5 @@
-from product import Product
-from can_be_shipped import CanBeShipped
+from .product import Product
+from interface import CanBeShipped
 from config import PRODUCT_TYPES
 
 class PhysicalProduct(Product, CanBeShipped):

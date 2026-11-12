@@ -1,4 +1,4 @@
-from product import Product
+from .product import Product
 from config import PRODUCT_TYPES
 
 class DigitalProduct(Product):
