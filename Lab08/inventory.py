@@ -4,14 +4,33 @@ class Inventory:
 
   # ---- Constructor ----
   def __init__(self):
-    self.__products = []
+    self.__products: list[Product] = []
 
 
   # ---- Methods ----
   @property
   def products(self) -> list[Product]:
     return list(self.__products)
+  
+  def remove_product(self, product_id: str) -> bool:
+    """Remove matching Product reference
 
+    Args:
+      product_id: the id of product to be removed
+
+    Function:
+      Finds the product with the product ID, if it exists in
+      inventory, remove it
+
+    Return:
+      True/False
+    """
+
+    product = self.search_product(product_id=product_id)
+    if product is None:
+      return False
+    self.__products.remove(product)
+    return True
 
   def add_product(self, product: Product) -> None:
     """Append new product to inventory list
@@ -36,7 +55,6 @@ class Inventory:
 
     self.__products.append(product)
 
-
   def search_product(self, product_id: str) -> Product | None:
     """Search for product in inventory product list
 
@@ -56,7 +74,6 @@ class Inventory:
         return product
 
     return None
-
 
   def display_all(self) -> list:
     print(f"\n{'-' * 60}")

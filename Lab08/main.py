@@ -60,7 +60,7 @@ def menu_add_product(inventory: Inventory) -> None:
     elif choice == "2":
       inventory.add_product(DigitalProduct(product_id=product_id, name=name, price=price, stock=stock, download_size=download_size))
     print("\nProduct added sucessfully.")
-  except ValueError as err:
+  except Exception as err:
     print(f"\nFailed to add product: {err}")
 
 
