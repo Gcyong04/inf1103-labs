@@ -1,8 +1,8 @@
-from entity import DigitalProduct, PhysicalProduct
-from entity.supplier import Supplier
-from entity.order import Order
+from entity import Supplier, Order
+from factory import ProductFactory
 from inventory import Inventory
 from file_handling import FileHandling
+from config import PRODUCT_TYPES
 
 
 # ---- Prompt/Display Functions ----
@@ -67,19 +67,21 @@ def menu_add_product(inventory: Inventory) -> None:
   name = prompt_non_empty_str("Product Name: ")
   price = prompt_float("Price: ")
   stock = prompt_int("Stock: ")
+
+  extra: dict = {}
   if choice == "1":
-    weight = prompt_float("Weight: ")
-  elif choice == "2":
-    download_size = prompt_float("Download Size: ")
+    product_type = PRODUCT_TYPES["physical"]
+    extra["weight"] = prompt_float("Weight: ")
+  else:
+    product_type = PRODUCT_TYPES["digital"]
+    extra["download_size"] = prompt_float("Download Size: ")
 
   print("\nSupplier details")
   supplier = prompt_supplier()
 
   try:
-    if choice == "1":
-      inventory.add_product(PhysicalProduct(product_id=product_id, name=name, price=price, stock=stock, supplier=supplier, weight=weight))
-    elif choice == "2":
-      inventory.add_product(DigitalProduct(product_id=product_id, name=name, price=price, stock=stock, supplier=supplier, download_size=download_size))
+    product = ProductFactory.create(product_type, product_id=product_id, name=name, price=price, stock=stock, supplier=supplier, **extra)
+    inventory.add_product(product)
     print("\nProduct added successfully.")
   except Exception as err:
     print(f"\nFailed to add product: {err}")

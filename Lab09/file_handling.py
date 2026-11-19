@@ -1,7 +1,7 @@
 from inventory import Inventory
-from entity import DigitalProduct, PhysicalProduct
-from entity.supplier import Supplier
-from config import INVENTORY_FILE, PRODUCT_TYPES
+from entity import Supplier
+from config import INVENTORY_FILE, COMMON_FIELDS
+from factory import ProductFactory
 import json
 
 class FileHandling:
@@ -25,12 +25,9 @@ class FileHandling:
         info = item["supplier"]
         supplier = Supplier(supplier_id=info["supplier_id"], name=info["name"], contact_email=info["contact_email"])
 
-        if item["type"] == PRODUCT_TYPES["physical"]:
-          product = PhysicalProduct(product_id=item["product_id"], name=item["name"], price=item["price"], stock=item["stock"], supplier=supplier, weight=item["weight"])
-        elif item["type"] == PRODUCT_TYPES["digital"]:
-          product = DigitalProduct(product_id=item["product_id"], name=item["name"], price=item["price"], stock=item["stock"], supplier=supplier, download_size=item["download_size"])
-        else:
-          continue
+        extra = {key: value for key, value in item.items() if key not in COMMON_FIELDS}
+
+        product = ProductFactory.create(item["type"], product_id=item["product_id"], name=item["name"], price=item["price"], stock=item["stock"], supplier=supplier, **extra)
 
         self.__inventory.add_product(product)
         loaded += 1
