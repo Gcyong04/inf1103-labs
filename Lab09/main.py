@@ -25,18 +25,26 @@ def prompt_non_empty_str(prompt: str) -> str:
       return text
     print("\nInput cannot be empty!")
 
-def prompt_int(prompt: str) -> int:
+def prompt_positive_int(prompt: str) -> int:
   while True:
     try:
-      return int(input(prompt).strip())
+      value = int(input(prompt).strip())
+      if value <= 0:
+        print("Please enter an integer greater than 0!")
+        continue
+      return value
     except ValueError:
       print("\nPlease enter a valid integer!")
 
 
-def prompt_float(prompt: str) -> float:
+def prompt_positive_float(prompt: str) -> float:
   while True:
     try:
-      return float(input(prompt).strip())
+      value = float(input(prompt).strip())
+      if value <= 0:
+        print("Please enter a number greater than 0!")
+        continue
+      return value
     except ValueError:
       print("\nPlease enter a valid number!")
 
@@ -65,16 +73,16 @@ def menu_add_product(inventory: Inventory) -> None:
 
   product_id = prompt_non_empty_str("Product ID: ")
   name = prompt_non_empty_str("Product Name: ")
-  price = prompt_float("Price: ")
-  stock = prompt_int("Stock: ")
+  price = prompt_positive_float("Price: ")
+  stock = prompt_positive_int("Stock: ")
 
   extra: dict = {}
   if choice == "1":
     product_type = PRODUCT_TYPES["physical"]
-    extra["weight"] = prompt_float("Weight: ")
+    extra["weight"] = prompt_positive_float("Weight: ")
   else:
     product_type = PRODUCT_TYPES["digital"]
-    extra["download_size"] = prompt_float("Download Size: ")
+    extra["download_size"] = prompt_positive_float("Download Size: ")
 
   print("\nSupplier details")
   supplier = prompt_supplier()
@@ -92,7 +100,7 @@ def menu_update_stock(inventory: Inventory) -> None:
   if product is None:
     print("\nProduct not found.")
     return
-  new_stock = prompt_int("New stock quantity: ")
+  new_stock = prompt_positive_int("New stock quantity: ")
   try:
     product.update_stock(new_stock)
     print(f"\nStock quantity updated successfully for {product.product_id}")
@@ -141,7 +149,7 @@ def menu_create_order(inventory: Inventory, orders: list[Order]) -> None:
       print("Product not found.")
       continue
 
-    quantity = prompt_int("Quantity: ")
+    quantity = prompt_positive_int("Quantity: ")
     if quantity <= 0:
       print("Quantity must be greater than 0.")
       continue

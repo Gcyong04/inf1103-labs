@@ -5,6 +5,12 @@ class Product(ABC):
 
   # ---- Constructor ----
   def __init__(self, product_id: str, name: str, price: float, stock: int, supplier: Supplier, type: str):
+    if price <= 0:
+      raise ValueError("Price must be greater than 0!")
+
+    if stock < 0:
+      raise ValueError("Stock cannot be negative value!")
+    
     self.__type: str = type
     self.__product_id: str = product_id
     self.__name: str = name
