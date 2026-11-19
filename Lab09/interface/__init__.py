@@ -1,0 +1,1 @@
+from .can_be_shipped import CanBeShipped

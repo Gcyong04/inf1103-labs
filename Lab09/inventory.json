@@ -1,0 +1,28 @@
+[
+    {
+        "type": "physical",
+        "product_id": "P001",
+        "name": "Banana",
+        "price": 1.23,
+        "stock": 900,
+        "supplier": {
+            "supplier_id": "S001",
+            "name": "Cold Storage",
+            "contact_email": "cs@gmail.com"
+        },
+        "weight": 0.36
+    },
+    {
+        "type": "digital",
+        "product_id": "P002",
+        "name": "Virus",
+        "price": 666.66,
+        "stock": 1,
+        "supplier": {
+            "supplier_id": "S002",
+            "name": "cs",
+            "contact_email": "cs"
+        },
+        "download_size": 900.24
+    }
+]
