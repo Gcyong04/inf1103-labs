@@ -2,7 +2,7 @@ from entity import Supplier, Order
 from factory import ProductFactory
 from inventory import Inventory
 from file_handling import FileHandling
-from config import PRODUCT_TYPES
+from config import PRODUCT_TYPES, CSV_PRODUCTS_FILE
 
 
 # ---- Prompt/Display Functions ----
@@ -176,8 +176,8 @@ def main():
   # Create new inventory class instance and load inventory from file into instance
   inventory = Inventory()
   orders: list[Order] = []
-  file_handler = FileHandling(inventory=inventory)
-  file_handler.load()
+  file_handler = FileHandling(inventory = inventory)
+  file_handler.load_csv(path = CSV_PRODUCTS_FILE, supplier = Supplier(supplier_id = "S001", name = "default supplier", contact_email = "default@gmail.com"))
 
   while True:
     display_menu()

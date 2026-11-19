@@ -2,27 +2,40 @@
     {
         "type": "physical",
         "product_id": "P001",
-        "name": "Banana",
-        "price": 1.23,
-        "stock": 900,
+        "name": "Desk Lamp",
+        "price": 25.0,
+        "stock": 10,
         "supplier": {
             "supplier_id": "S001",
-            "name": "Cold Storage",
-            "contact_email": "cs@gmail.com"
+            "name": "default supplier",
+            "contact_email": "default@gmail.com"
         },
-        "weight": 0.36
+        "weight": 0.0
     },
     {
         "type": "digital",
-        "product_id": "P002",
-        "name": "Virus",
-        "price": 666.66,
-        "stock": 1,
+        "product_id": "D001",
+        "name": "Photo Editor",
+        "price": 49.9,
+        "stock": 100,
         "supplier": {
-            "supplier_id": "S002",
-            "name": "cs",
-            "contact_email": "cs"
+            "supplier_id": "S001",
+            "name": "default supplier",
+            "contact_email": "default@gmail.com"
         },
-        "download_size": 900.24
+        "download_size": 0.0
+    },
+    {
+        "type": "physical",
+        "product_id": "P003",
+        "name": "Monitor Stand",
+        "price": 39.5,
+        "stock": 7,
+        "supplier": {
+            "supplier_id": "S001",
+            "name": "default supplier",
+            "contact_email": "default@gmail.com"
+        },
+        "weight": 0.0
     }
 ]
